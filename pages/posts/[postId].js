@@ -7,11 +7,9 @@ const Post = () => {
   return (
     <div>
       <h1>this is post page - query: {router.query.postId}</h1>
-      <h2>
-        <Link href="/posts">
-          <a>go to posts page !</a>
-        </Link>
-      </h2>
+      <Link href="/posts">
+        <a>go to posts page !</a>
+      </Link>
     </div>
   );
 };

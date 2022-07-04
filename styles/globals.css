@@ -3,10 +3,19 @@
 @tailwind utilities;
 
 @layer base {
-  h1 {
-    @apply text-5xl;
+  html {
+    @apply text-xl;
   }
-  h2 {
-    @apply text-4xl;
+  h1 {
+    @apply text-2xl font-medium;
+  }
+  body {
+    @apply p-2;
+  }
+  a {
+    @apply text-blue-700 block text-base;
+  }
+  button {
+    @apply bg-gray-100 py-0.5 px-2 my-2 rounded-md shadow-md;
   }
 }

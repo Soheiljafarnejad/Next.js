@@ -12,12 +12,9 @@ const Home = () => {
   return (
     <div>
       <h1>this is Home Page</h1>
-      <h2 className="bg-red-400">
-        <Link href="/posts">
-          <a>go to posts ?</a>
-        </Link>
-      </h2>
-
+      <Link href="/posts">
+        <a>go to posts ?</a>
+      </Link>
       <button onClick={clickHandler}>go to dashboard Page ?</button>
     </div>
   );
