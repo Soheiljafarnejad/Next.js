@@ -1,3 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-xl;
+  }
+  h1 {
+    @apply text-5xl;
+    @apply text-2xl font-medium;
+  }
+  body {
+    @apply p-2;
+  }
+  a {
+    @apply text-blue-700 block text-base;
+  }
+  h2 {
+    @apply text-4xl;
+  }
+
+  button {
+    @apply bg-gray-100 py-0.5 px-2 my-2 rounded-md shadow-md;
+  }
+}
