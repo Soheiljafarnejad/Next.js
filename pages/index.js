@@ -1,23 +1,14 @@
-import axios from "axios";
+import Link from "next/link";
 
-export default function Home({ userList }) {
+const Home = () => {
   return (
     <div>
-      <h2>home page</h2>
-      <ul>
-        {userList.map((item) => {
-          return <li key={item.id}>{item.title}</li>;
-        })}
-      </ul>
+      <h1>Home Page</h1>
+      <Link href="/user">
+        <a>UserList Page ?</a>
+      </Link>
     </div>
   );
-}
+};
 
-export async function getStaticProps() {
-  const { data } = await axios.get("https://jsonplaceholder.typicode.com/posts");
-  return {
-    props: {
-      userList: data.slice(1, 10),
-    },
-  };
-}
+export default Home;
