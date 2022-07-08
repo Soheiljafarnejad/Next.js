@@ -7,6 +7,9 @@ const Home = () => {
       <Link href="/user">
         <a>UserList Page ?</a>
       </Link>
+      <Link href="/episode">
+        <a>EpisodeList Page ?</a>
+      </Link>
     </div>
   );
 };

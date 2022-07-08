@@ -2,7 +2,7 @@ import axios from "axios";
 import Link from "next/link";
 import User from "../../components/User";
 
-export default function Home({ userList }) {
+export default function UserPage({ userList }) {
   return (
     <div>
       <h1>User List</h1>
