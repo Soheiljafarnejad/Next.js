@@ -11,13 +11,13 @@ const Episode = ({ episode }) => {
 export default Episode;
 
 export async function getStaticPaths() {
+  const { data } = await axios.get(`https://rickandmortyapi.com/api/episode`);
+  const paths = data.results.map((item) => {
+    return { params: { episodeId: item.id.toString() } };
+  });
+
   return {
-    paths: [
-      { params: { episodeId: "1" } },
-      { params: { episodeId: "2" } },
-      { params: { episodeId: "3" } },
-      { params: { episodeId: "4" } },
-    ],
+    paths,
     fallback: false,
   };
 }
