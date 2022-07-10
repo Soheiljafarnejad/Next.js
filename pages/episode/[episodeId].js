@@ -1,11 +1,6 @@
 import axios from "axios";
-import { useRouter } from "next/router";
 
 const Episode = ({ episode }) => {
-  const router = useRouter();
-
-  if (router.isFallback) return <h2>loading...</h2>;
-
   return (
     <div>
       {episode.id} / name :{episode.name} - date: {episode.air_date}
@@ -16,8 +11,8 @@ const Episode = ({ episode }) => {
 export default Episode;
 
 export async function getStaticPaths() {
-  const { data } = await axios.get(`https://rickandmortyapi.com/api/episode`);
-
+  
+  // const { data } = await axios.get(`https://rickandmortyapi.com/api/episode`);
   // const paths = data.results.map((item) => {
   //   return { params: { episodeId: item.id.toString() } };
   // });
@@ -29,7 +24,7 @@ export async function getStaticPaths() {
       { params: { episodeId: "3" } },
       { params: { episodeId: "4" } },
     ],
-    fallback: true,
+    fallback: "blocking", //such as "fallback:true" but without loading...
   };
 }
 
