@@ -11,7 +11,7 @@
     @apply text-2xl font-medium;
   }
   body {
-    @apply p-2;
+    @apply bg-gray-100;
   }
   a {
     @apply text-blue-700 block text-base;
