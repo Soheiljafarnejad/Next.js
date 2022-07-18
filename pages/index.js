@@ -7,6 +7,12 @@ export default function Home() {
   const [error, setError] = useState("");
   const [data, setData] = useState([]);
 
+  const deleteHandler = (id) => {
+    axios.delete(`/api/todos/${id}`).then((res) => {
+      setData(res.data.todos);
+    });
+  };
+
   useEffect(() => {
     setLoading(true);
     axios
@@ -33,7 +39,7 @@ export default function Home() {
       <main className="flex items-center justify-center mt-12">
         <div className="w-full px-16">
           {data.map((item) => {
-            return <Todo key={item.id} title={item.title} />;
+            return <Todo onDelete={() => deleteHandler(item.id)} key={item.id} title={item.title} />;
           })}
         </div>
       </main>

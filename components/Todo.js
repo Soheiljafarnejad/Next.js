@@ -1,4 +1,4 @@
-const Todo = ({ title }) => {
+const Todo = ({ title, onDelete }) => {
   return (
     <div className="bg-white flex items-center justify-between p-4 mb-4 shadow border rounded-md">
       <p>{title}</p>
@@ -16,7 +16,7 @@ const Todo = ({ title }) => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
           </svg>
         </span>
-        <span>
+        <span onClick={onDelete}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 stroke-red-500 cursor-pointer"
