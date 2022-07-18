@@ -19,8 +19,11 @@
   h2 {
     @apply text-4xl;
   }
-
+  input,
+  textarea {
+    @apply border rounded px-2 py-1 text-base;
+  }
   button {
-    @apply bg-gray-100 py-0.5 px-2 my-2 rounded-md shadow-md;
+    @apply bg-gray-500 py-0.5 px-2 rounded shadow-md;
   }
 }

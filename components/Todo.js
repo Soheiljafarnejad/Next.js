@@ -1,7 +1,10 @@
-const Todo = ({ title, onDelete }) => {
+const Todo = ({ todo, onDelete }) => {
   return (
-    <div className="bg-white flex items-center justify-between p-4 mb-4 shadow border rounded-md">
-      <p>{title}</p>
+    <div className="bg-white flex items-center justify-between px-4 py-2 mb-4 shadow border rounded-md">
+      <div>
+        <p>{todo.title}</p>
+        <p>{todo.description}</p>
+      </div>
 
       <div className="flex items-center justify-end gap-3">
         <span>

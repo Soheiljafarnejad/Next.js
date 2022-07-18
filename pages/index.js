@@ -1,46 +1,36 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Todo from "../components/Todo";
+import TodoForm from "../components/TodoForm";
+import TodoList from "../components/TodoList";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
-  const [data, setData] = useState([]);
-
-  const deleteHandler = (id) => {
-    axios.delete(`/api/todos/${id}`).then((res) => {
-      setData(res.data.todos);
-    });
-  };
+  const [data, setData] = useState({ data: [], loading: true, error: "" });
 
   useEffect(() => {
-    setLoading(true);
     axios
       .get("/api/todos")
       .then((res) => {
-        setLoading(false);
-        setError("");
-        setData(res.data.todos);
+        setData({ data: res.data.todos, loading: false, error: "" });
       })
       .catch((error) => {
-        setLoading(false);
-        setError(error);
+        setData({ data: [], loading: false, error: error });
       });
   }, []);
 
-  if (error) return <p>error : {error}</p>;
-  if (loading) return <p>loading...</p>;
+  if (data.error) return <p>error : {data.error.message}</p>;
+  if (data.loading) return <p>loading...</p>;
 
   return (
     <div>
       <header className="shadow bg-slate-100">
         <h1 className="p-4 text-center">TodoList App using Next.js , TailwindCss</h1>
       </header>
-      <main className="flex items-center justify-center mt-12">
-        <div className="w-full px-16">
-          {data.map((item) => {
-            return <Todo onDelete={() => deleteHandler(item.id)} key={item.id} title={item.title} />;
-          })}
+      <main className="flex items-start justify-center gap-4 mt-12 px-4">
+        <div className="w-2/3">
+          <TodoList data={data} setData={setData} />
+        </div>
+        <div className="w-1/3">
+          <TodoForm data={data} setData={setData} />
         </div>
       </main>
     </div>

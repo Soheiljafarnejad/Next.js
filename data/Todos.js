@@ -1,5 +1,5 @@
 export const todos = [
-  { title: "react.js", id: 1 },
-  { title: "next.js", id: 2 },
-  { title: "node.js", id: 3 },
+  { title: "react.js", description: "test", id: 1 },
+  { title: "next.js", description: "test", id: 2 },
+  { title: "node.js", description: "test", id: 3 },
 ];
