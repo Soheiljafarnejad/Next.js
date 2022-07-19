@@ -17,8 +17,11 @@ export default function Home() {
       });
   }, []);
 
-  if (data.error) return <p>error : {data.error.message}</p>;
   if (data.loading) return <p>loading...</p>;
+
+  if (data.error) {
+    alert(data.error.message);
+  }
 
   return (
     <div>
