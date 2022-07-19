@@ -15,9 +15,13 @@ const TodoList = ({ data, setData }) => {
 
   return (
     <>
-      {data?.data.map((item) => {
-        return <Todo onDelete={() => deleteHandler(item.id)} key={item.id} todo={item} />;
-      })}
+      {data.length > 0 ? (
+        data.map((item) => {
+          return <Todo onDelete={() => deleteHandler(item.id)} key={item.id} todo={item} />;
+        })
+      ) : (
+        <p className="text-center">todo list is empty !</p>
+      )}
     </>
   );
 };
