@@ -5,7 +5,6 @@ const TodoForm = ({ data, setData }) => {
   const [form, setForm] = useState({ title: "", description: "" });
 
   const addHandler = (e) => {
-    console.log(e);
     e.preventDefault();
     const body = { title: form.title, description: form.description };
     axios

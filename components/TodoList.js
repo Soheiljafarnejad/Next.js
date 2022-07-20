@@ -1,8 +1,12 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import Todo from "./Todo";
 
 const TodoList = ({ data, setData }) => {
-  const deleteHandler = (id) => {
+  const router = useRouter();
+
+  const deleteHandler = (e, id) => {
+    e.stopPropagation();
     axios
       .delete(`/api/todos/${id}`)
       .then((res) => {
@@ -17,7 +21,11 @@ const TodoList = ({ data, setData }) => {
     <>
       {data.data.length > 0 ? (
         data.data.map((item) => {
-          return <Todo onDelete={() => deleteHandler(item._id)} key={item.id} todo={item} />;
+          return (
+            <div className="cursor-pointer" key={item._id} onClick={() => router.push(`/todos/${item._id}`)}>
+              <Todo onDelete={(e) => deleteHandler(e, item._id)} key={item.id} todo={item} />
+            </div>
+          );
         })
       ) : (
         <p className="text-center">todo list is empty !</p>
