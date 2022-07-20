@@ -10,11 +10,11 @@ const TodoForm = ({ data, setData }) => {
     axios
       .post(`/api/todos`, body)
       .then((res) => {
-        setData({ data: res.data.todos, loading: false, error: "" });
+        setData(res.data.todos);
         setForm({ title: "", description: "" });
       })
       .catch((error) => {
-        setData({ data: [], loading: false, error: error });
+        console.log(error);
       });
   };
 

@@ -10,17 +10,17 @@ const TodoList = ({ data, setData }) => {
     axios
       .delete(`/api/todos/${id}`)
       .then((res) => {
-        setData({ data: res.data.todos, error: "", loading: false });
+        setData(res.data.todos);
       })
       .catch((error) => {
-        setData({ data: [], loading: false, error: error });
+        console.log(error);
       });
   };
 
   return (
     <>
-      {data.data.length > 0 ? (
-        data.data.map((item) => {
+      {data.length > 0 ? (
+        data.map((item) => {
           return (
             <div className="cursor-pointer" key={item._id} onClick={() => router.push(`/todos/${item._id}`)}>
               <Todo onDelete={(e) => deleteHandler(e, item._id)} key={item.id} todo={item} />

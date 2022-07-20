@@ -1,28 +1,11 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TodoList from "../../components/TodoList";
 import TodoForm from "../../components/TodoForm";
 import Link from "next/link";
+import { getAllTodo } from "../api/todos";
 
-export default function Home() {
-  const [data, setData] = useState({ data: [], loading: true, error: "" });
-
-  useEffect(() => {
-    axios
-      .get("/api/todos")
-      .then((res) => {
-        setData({ data: res.data.todos, loading: false, error: "" });
-      })
-      .catch((error) => {
-        setData({ data: [], loading: false, error: error });
-      });
-  }, []);
-
-  if (data.loading) return <p>loading...</p>;
-
-  if (data.error) {
-    alert(data.error.message);
-  }
+export default function Home({ todos }) {
+  const [data, setData] = useState(todos);
 
   return (
     <div>
@@ -42,4 +25,15 @@ export default function Home() {
       </main>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  let todos = await getAllTodo();
+  todos = JSON.parse(JSON.stringify(todos));
+
+  return {
+    props: {
+      todos,
+    },
+  };
 }
