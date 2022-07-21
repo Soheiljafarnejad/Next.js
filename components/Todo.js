@@ -1,16 +1,16 @@
-const Todo = ({ todo, onDelete }) => {
+const Todo = ({ todo, onDelete, onEdit, onCompleted }) => {
   return (
     <div className="bg-white flex items-center justify-between px-4 py-2 mb-4 shadow border rounded-md">
-      <div>
+      <div className={todo.isCompleted ? " line-through opacity-70" : ""}>
         <p>{todo.title}</p>
         <p>{todo.description}</p>
       </div>
 
       <div className="flex items-center justify-end gap-3">
-        <span>
+        <span onClick={onCompleted}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 stroke-green-500 cursor-pointer"
+            className={`h-5 w-5 ${todo.isCompleted ? "stroke-green-500" : "stroke-gray-500"} cursor-pointer`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -35,7 +35,7 @@ const Todo = ({ todo, onDelete }) => {
             />
           </svg>
         </span>
-        <span>
+        <span onClick={onEdit}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5 stroke-blue-500 cursor-pointer"

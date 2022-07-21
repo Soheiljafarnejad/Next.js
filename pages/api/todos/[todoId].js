@@ -7,14 +7,14 @@ export default async function handler(req, res) {
 
   if (method === "GET") {
     const todo = await getOneTodo(query);
-    return res.status(200).json({ todo });
+    return res.status(200).json({ todo, message: "get one todo succeeded" });
   }
 
   //   delete todo
   else if (method === "DELETE") {
     await Todo.findByIdAndDelete(query.todoId);
     const todos = await Todo.find({});
-    return res.status(200).json({ todos, message: "succeeded" });
+    return res.status(200).json({ todos, message: "delete todo succeeded" });
   }
 }
 

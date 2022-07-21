@@ -1,11 +1,27 @@
+import axios from "axios";
 import { useState } from "react";
 import TodoList from "../../components/TodoList";
 import TodoForm from "../../components/TodoForm";
 import Link from "next/link";
-import { getAllTodo } from "../api/todos";
+import Todo from "../../server/models/todo";
 
 export default function Home({ todos }) {
   const [data, setData] = useState(todos);
+  const [formValue, setFormValue] = useState({ title: "", description: "" });
+
+  const addHandler = (e) => {
+    e.preventDefault();
+    const body = { title: formValue.title, description: formValue.description };
+    axios
+      .post(`/api/todos`, body)
+      .then((res) => {
+        setData(res.data.todos);
+        setFormValue({ title: "", description: "" });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
@@ -20,7 +36,7 @@ export default function Home({ todos }) {
           <TodoList data={data} setData={setData} />
         </div>
         <div className="w-1/3">
-          <TodoForm data={data} setData={setData} />
+          <TodoForm submitHandler={addHandler} formValue={formValue} setFormValue={setFormValue} />
         </div>
       </main>
     </div>
@@ -28,7 +44,7 @@ export default function Home({ todos }) {
 }
 
 export async function getServerSideProps() {
-  let todos = await getAllTodo();
+  let todos = await Todo.find({});
   todos = JSON.parse(JSON.stringify(todos));
 
   return {
