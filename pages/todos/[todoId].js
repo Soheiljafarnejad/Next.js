@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import TodoForm from "../../components/TodoForm";
+import TodoForm from "/components/TodoForm";
 import { useRouter } from "next/router";
-import { getOneTodo } from "../api/todos/[todoId]";
+import { getOneTodo } from "@/api/todos/[todoId]";
 const TodoId = ({ todo }) => {
   const [formValue, setFormValue] = useState({ title: todo.title, description: todo.description });
   const router = useRouter();

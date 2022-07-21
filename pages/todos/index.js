@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
-import TodoList from "../../components/TodoList";
-import TodoForm from "../../components/TodoForm";
+import TodoList from "/components/TodoList";
+import TodoForm from "/components/TodoForm";
 import Link from "next/link";
-import Todo from "../../server/models/todo";
+import Todo from "/server/models/todo";
 
 export default function Home({ todos }) {
   const [data, setData] = useState(todos);
