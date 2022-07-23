@@ -2,8 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 import TodoList from "/components/TodoList";
 import TodoForm from "/components/TodoForm";
-import Link from "next/link";
 import Todo from "/server/models/todo";
+import dbConnect from "server/utils/dbConnect";
 
 export default function Home({ todos }) {
   const [data, setData] = useState(todos);
@@ -38,6 +38,7 @@ export default function Home({ todos }) {
 }
 
 export async function getServerSideProps() {
+  dbConnect();
   let todos = await Todo.find({});
   todos = JSON.parse(JSON.stringify(todos));
 
